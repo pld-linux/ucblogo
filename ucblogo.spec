@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
+# Source0-md5:	53af869602ede043aaf4af31c2035d87
 Patch0:		%{name}-signals.patch
 Patch1:		%{name}-make.patch
 BuildRequires:	autoconf
