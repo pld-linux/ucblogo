@@ -1,7 +1,7 @@
 Summary:	Berkeley LOGO interpreter
 Summary(pl):	Interpreter Berkeley LOGO
 Name:		ucblogo
-Version:	5.1
+Version:	5.2
 Release:	1
 License:	GPL
 Group:		Development/Languages
@@ -11,6 +11,7 @@ Patch1:		%{name}-make.patch
 BuildRequires:	autoconf
 BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel
+BuildRequires:	emacs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -69,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/*
 %dir %{_datadir}/logo
 %{_datadir}/logo/*
+%doc README
 
 %files examples
 %defattr(644,root,root,755)
