@@ -9,10 +9,10 @@ Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
 # Source0-md5:	d10fb7ef5d36c38d54cfe5f2f3f7b5d6
 Patch0:		%{name}-signals.patch
 Patch1:		%{name}-make.patch
-BuildRequires:	autoconf
 BuildRequires:	XFree86-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	autoconf
 BuildRequires:	emacs
+BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
