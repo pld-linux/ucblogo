@@ -1,6 +1,24 @@
+--- ucblogo-5.2/emacs/makefile.orig	Tue Dec 10 13:51:05 2002
++++ ucblogo-5.2/emacs/makefile	Tue Dec 10 13:50:48 2002
+@@ -1,5 +1,5 @@
+ BUILDIR	      = `pwd`
+-INFODIR	      = $(prefix)/info
++INFODIR	      = $(prefix)/share/info
+ EMACSDIR      = $(LIBLOC)/emacs
+ DOCSDIR	      = $(LIBLOC)/docs
+ HTMLDIR	      = $(DOCSDIR)/html
 --- ucblogo-5.2/makefile.in.orig	Tue Dec 10 13:46:05 2002
-+++ ucblogo-5.2/makefile.in	Tue Dec 10 13:50:13 2002
-@@ -54,25 +54,28 @@
++++ ucblogo-5.2/makefile.in	Tue Dec 10 14:09:43 2002
+@@ -4,7 +4,7 @@
+ LIBS  = @X_PRE_LIBS@ @X_LIBS@ @LIBS@ @X_EXTRA_LIBS@
+ prefix = @prefix@
+ BINDIR        = $(prefix)/bin
+-LIBLOC        = $(prefix)/lib/logo
++LIBLOC        = $(prefix)/share/logo
+ 
+ # LIBLOC      = `pwd`
+ 
+@@ -54,25 +54,25 @@
  
  clean:
  	rm -f *.o libloc.c
@@ -14,17 +32,18 @@
 +	cd emacs; $(MAKE) ship
  
  install: all
-+	prefix=$(DESTDIR)$(prefix)
-+	BINDIR=$(DESTDIR)$(BINDIR)
-+	LIBLOC=$(DESTDIR)$(LIBLOC)
-+	export prefix BINDIR LIBLOC
- 	for d in $(BINDIR) $(LIBLOC) $(LIBLOC)/logolib $(LIBLOC)/helpfiles $(LIBLOC)/csls; do [ -d $$d ] || mkdir -p $$d || exit 1; done
- 	cp logo $(BINDIR)/.
- 	cp -f logolib/* $(LIBLOC)/logolib/.
- 	cp -f helpfiles/* $(LIBLOC)/helpfiles/.
- 	cp -f csls/* $(LIBLOC)/csls/.
+-	for d in $(BINDIR) $(LIBLOC) $(LIBLOC)/logolib $(LIBLOC)/helpfiles $(LIBLOC)/csls; do [ -d $$d ] || mkdir -p $$d || exit 1; done
+-	cp logo $(BINDIR)/.
+-	cp -f logolib/* $(LIBLOC)/logolib/.
+-	cp -f helpfiles/* $(LIBLOC)/helpfiles/.
+-	cp -f csls/* $(LIBLOC)/csls/.
 -	(cd emacs; prefix=$(prefix) LIBLOC=$(LIBLOC) BINDIR=$(BINDIR) gmake install)
-+	(cd emacs; prefix=$(prefix) LIBLOC=$(LIBLOC) BINDIR=$(BINDIR) $(MAKE) install)
++	for d in $(DESTDIR)$(BINDIR) $(DESTDIR)$(LIBLOC) $(DESTDIR)$(LIBLOC)/logolib $(DESTDIR)$(LIBLOC)/helpfiles $(DESTDIR)$(LIBLOC)/csls; do [ -d $$d ] || mkdir -p $$d || exit 1; done
++	cp logo $(DESTDIR)$(BINDIR)/.
++	cp -f logolib/* $(DESTDIR)$(LIBLOC)/logolib/.
++	cp -f helpfiles/* $(DESTDIR)$(LIBLOC)/helpfiles/.
++	cp -f csls/* $(DESTDIR)$(LIBLOC)/csls/.
++	(cd emacs; prefix=$(DESTDIR)$(prefix) LIBLOC=$(DESTDIR)$(LIBLOC) BINDIR=$(DESTDIR)$(BINDIR) $(MAKE) install)
  #	prefix=$(prefix); LIBLOC=$(LIBLOC); BINDIR=$(BINDIR); export prefix LIBLOC BINDIR; cd emacs; gmake install
  
  logo-mode: 
@@ -35,12 +54,3 @@
  docs:
 -	cd emacs; gmake docs
 +	cd emacs; $(MAKE) docs
---- ucblogo-5.2/emacs/makefile.orig	Tue Dec 10 13:51:05 2002
-+++ ucblogo-5.2/emacs/makefile	Tue Dec 10 13:50:48 2002
-@@ -1,5 +1,5 @@
- BUILDIR	      = `pwd`
--INFODIR	      = $(prefix)/info
-+INFODIR	      = $(prefix)/share/info
- EMACSDIR      = $(LIBLOC)/emacs
- DOCSDIR	      = $(LIBLOC)/docs
- HTMLDIR	      = $(DOCSDIR)/html
