@@ -17,6 +17,7 @@
 +	prefix=$(DESTDIR)$(prefix)
 +	BINDIR=$(DESTDIR)$(BINDIR)
 +	LIBLOC=$(DESTDIR)$(LIBLOC)
++	export prefix BINDIR LIBLOC
  	for d in $(BINDIR) $(LIBLOC) $(LIBLOC)/logolib $(LIBLOC)/helpfiles $(LIBLOC)/csls; do [ -d $$d ] || mkdir -p $$d || exit 1; done
  	cp logo $(BINDIR)/.
  	cp -f logolib/* $(LIBLOC)/logolib/.
