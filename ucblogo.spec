@@ -5,8 +5,6 @@ Version:	5.1
 Release:	1
 License:	GPL
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
 Patch0:		%{name}-signals.patch
 Patch1:		%{name}-makefile.patch
@@ -29,8 +27,6 @@ multimedia. Dla nich kup komercyjn± wersjê.
 Summary:	Example LOGO programs for the Berkeley LOGO interpreter
 Summary(pl):	Przyk³ady programów w LOGO dla interpretera Berkeley LOGO
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Requires:	%{name}
 
 %description examples
