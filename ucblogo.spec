@@ -1,12 +1,12 @@
 Summary:	Berkeley LOGO interpreter
 Summary(pl):	Interpreter Berkeley LOGO
 Name:		ucblogo
-Version:	5.2
+Version:	5.3
 Release:	1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
-# Source0-md5:	53af869602ede043aaf4af31c2035d87
+# Source0-md5:	d10fb7ef5d36c38d54cfe5f2f3f7b5d6
 Patch0:		%{name}-signals.patch
 Patch1:		%{name}-make.patch
 BuildRequires:	autoconf
