@@ -43,7 +43,7 @@ plot i wiele innych.
 %patch1 -p1
 
 %build
-autoconf
+%{__autoconf}
 %configure --with-x
 %{__make} "CFLAGS=%{rpmcflags}"
 
