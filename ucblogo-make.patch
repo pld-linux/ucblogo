@@ -1,0 +1,31 @@
+diff -urN ucblogo-5.1/makefile.in ucblogo-5.1.patch/makefile.in
+--- ucblogo-5.1/makefile.in	Wed Jul 25 19:29:35 2001
++++ ucblogo-5.1.patch/makefile.in	Sun Aug 19 20:03:38 2001
+@@ -54,22 +54,22 @@
+ 
+ clean:
+ 	rm -f *.o libloc.c
+-	cd emacs; gmake clean
++	cd emacs; make clean
+ 
+ ship:
+ 	rm -f config.h config.cache config.log config.status
+ 	rm -f makefile makehelp logo *.o libloc.c
+-	cd emacs; gmake ship
++	cd emacs; $(MAKE) ship
+ 
+ install: all
+ 	for d in $(BINDIR) $(LIBLOC) $(LIBLOC)/logolib $(LIBLOC)/helpfiles; do [ -d $$d ] || mkdir -p $$d || exit 1; done
+ 	cp logo $(BINDIR)/.
+ 	cp -f logolib/* $(LIBLOC)/logolib/.
+ 	cp -f helpfiles/* $(LIBLOC)/helpfiles/.
+-	export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; gmake install
++	export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; $(MAKE) install
+ 
+ logo-mode: 
+-	@export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; gmake
++	@export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; $(MAKE)
+ 
+ docs:
+-	cd emacs; gmake docs
++	cd emacs; $(MAKE) docs
