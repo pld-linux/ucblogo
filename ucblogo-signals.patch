@@ -1,0 +1,13 @@
+diff -urN ucblogo-5.1/globals.h ucblogo-5.1.patch/globals.h
+--- ucblogo-5.1/globals.h	Mon Jul 16 23:30:28 2001
++++ ucblogo-5.1.patch/globals.h	Sun Aug 19 20:00:10 2001
+@@ -19,6 +19,9 @@
+  *
+  */
+ 
++#define SIG_TAKES_ARG
++#define SIGRET
++
+ /* main.c */
+ extern NODE **bottom_stack; /*GC*/
+ extern NODE *current_line, *exec_list;
