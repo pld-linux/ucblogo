@@ -51,8 +51,7 @@ plot i wiele innych.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%{makeinstall}
 install -d $RPM_BUILD_ROOT%{_examplesdir}/logo
 install csls/* $RPM_BUILD_ROOT%{_examplesdir}/logo
 
