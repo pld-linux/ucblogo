@@ -1,12 +1,11 @@
-diff -urN ucblogo-5.1/makefile.in ucblogo-5.1.patch/makefile.in
---- ucblogo-5.1/makefile.in	Wed Jul 25 19:29:35 2001
-+++ ucblogo-5.1.patch/makefile.in	Sun Aug 19 20:03:38 2001
-@@ -54,22 +54,22 @@
+--- ucblogo-5.2/makefile.in.orig	Tue Dec 10 13:46:05 2002
++++ ucblogo-5.2/makefile.in	Tue Dec 10 13:50:13 2002
+@@ -54,25 +54,28 @@
  
  clean:
  	rm -f *.o libloc.c
 -	cd emacs; gmake clean
-+	cd emacs; make clean
++	cd emacs; $(MAKE) clean
  
  ship:
  	rm -f config.h config.cache config.log config.status
@@ -15,17 +14,32 @@ diff -urN ucblogo-5.1/makefile.in ucblogo-5.1.patch/makefile.in
 +	cd emacs; $(MAKE) ship
  
  install: all
- 	for d in $(BINDIR) $(LIBLOC) $(LIBLOC)/logolib $(LIBLOC)/helpfiles; do [ -d $$d ] || mkdir -p $$d || exit 1; done
++	prefix=$(DESTDIR)$(prefix)
++	BINDIR=$(DESTDIR)$(BINDIR)
++	LIBLOC=$(DESTDIR)$(LIBLOC)
+ 	for d in $(BINDIR) $(LIBLOC) $(LIBLOC)/logolib $(LIBLOC)/helpfiles $(LIBLOC)/csls; do [ -d $$d ] || mkdir -p $$d || exit 1; done
  	cp logo $(BINDIR)/.
  	cp -f logolib/* $(LIBLOC)/logolib/.
  	cp -f helpfiles/* $(LIBLOC)/helpfiles/.
--	export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; gmake install
-+	export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; $(MAKE) install
+ 	cp -f csls/* $(LIBLOC)/csls/.
+-	(cd emacs; prefix=$(prefix) LIBLOC=$(LIBLOC) BINDIR=$(BINDIR) gmake install)
++	(cd emacs; prefix=$(prefix) LIBLOC=$(LIBLOC) BINDIR=$(BINDIR) $(MAKE) install)
+ #	prefix=$(prefix); LIBLOC=$(LIBLOC); BINDIR=$(BINDIR); export prefix LIBLOC BINDIR; cd emacs; gmake install
  
  logo-mode: 
--	@export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; gmake
-+	@export prefix=$(prefix); export LIBLOC=$(LIBLOC); export BINDIR=$(BINDIR); cd emacs; $(MAKE)
+-	(cd emacs; prefix=$(prefix) LIBLOC=$(LIBLOC) BINDIR=$(BINDIR) gmake)
++	(cd emacs; prefix=$(prefix) LIBLOC=$(LIBLOC) BINDIR=$(BINDIR) $(MAKE))
+ #	@prefix=$(prefix); LIBLOC=$(LIBLOC); BINDIR=$(BINDIR); export prefix LIBLOC BINDIR; cd emacs; gmake
  
  docs:
 -	cd emacs; gmake docs
 +	cd emacs; $(MAKE) docs
+--- ucblogo-5.2/emacs/makefile.orig	Tue Dec 10 13:51:05 2002
++++ ucblogo-5.2/emacs/makefile	Tue Dec 10 13:50:48 2002
+@@ -1,5 +1,5 @@
+ BUILDIR	      = `pwd`
+-INFODIR	      = $(prefix)/info
++INFODIR	      = $(prefix)/share/info
+ EMACSDIR      = $(LIBLOC)/emacs
+ DOCSDIR	      = $(LIBLOC)/docs
+ HTMLDIR	      = $(DOCSDIR)/html
