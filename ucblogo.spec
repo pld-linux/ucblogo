@@ -1,7 +1,8 @@
+Summary:	Berkeley LOGO interpreter
+Summary(pl):	Interpreter Berkeley LOGO
 Name:		ucblogo
 Version:	5.1
 Release:	1
-Summary:	Berkeley LOGO interpreter
 License:	GPL
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
@@ -9,9 +10,9 @@ Group(pl):	Programowanie/Jêzyki
 Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
 Patch0:		%{name}-signals.patch
 Patch1:		%{name}-makefile.patch
-Buildrequires:	autoconf
-Buildrequires:	XFree86-devel
-Buildrequires:	ncurses-devel
+BuildRequires:	autoconf
+BuildRequires:	XFree86-devel
+BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -19,16 +20,26 @@ Berkeley Logo interpreter for Unix and X. Features *not* found in
 Berkeley Logo include robotics, music, GUIs, animation, parallelism,
 and multimedia. For those, buy a commercial version.
 
+%description -l pl
+Interpreter Berkeley Logo dla Unika i X. Mo¿liwo¶ci, których nie ma
+Berkeley Logo to m.in. robotyka, muzyka, GUI, animacje, równoleg³o¶æ,
+multimedia. Dla nich kup komercyjn± wersjê.
+
 %package examples
+Summary:	Example LOGO programs for the Berkeley LOGO interpreter
+Summary(pl):	Przyk³ady programów w LOGO dla interpretera Berkeley LOGO
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
-Summary:	Example LOGO programs for the Berkeley LOGO interpreter
 Requires:	%{name}
 
 %description examples
 This package contains example LOGO programs, eg solitaire, poker, plot
 and many others.
+
+%description examples -l pl
+Ten pakiet zawiera przyk³adowe programy w LOGO, m.in. pasjans, poker,
+plot i wiele innych.
 
 %prep
 %setup -q
