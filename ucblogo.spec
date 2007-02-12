@@ -1,5 +1,5 @@
 Summary:	Berkeley LOGO interpreter
-Summary(pl.UTF-8):   Interpreter Berkeley LOGO
+Summary(pl.UTF-8):	Interpreter Berkeley LOGO
 Name:		ucblogo
 Version:	5.3
 Release:	1
@@ -27,7 +27,7 @@ multimedia. Dla nich kup komercyjną wersję.
 
 %package examples
 Summary:	Example LOGO programs for the Berkeley LOGO interpreter
-Summary(pl.UTF-8):   Przykłady programów w LOGO dla interpretera Berkeley LOGO
+Summary(pl.UTF-8):	Przykłady programów w LOGO dla interpretera Berkeley LOGO
 Group:		Development/Languages
 Requires:	%{name}
 
