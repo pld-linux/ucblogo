@@ -1,5 +1,5 @@
 Summary:	Berkeley LOGO interpreter
-Summary(pl):	Interpreter Berkeley LOGO
+Summary(pl.UTF-8):   Interpreter Berkeley LOGO
 Name:		ucblogo
 Version:	5.3
 Release:	1
@@ -20,14 +20,14 @@ Berkeley Logo interpreter for Unix and X. Features *not* found in
 Berkeley Logo include robotics, music, GUIs, animation, parallelism,
 and multimedia. For those, buy a commercial version.
 
-%description -l pl
-Interpreter Berkeley Logo dla Unika i X. Moøliwo∂ci, ktÛrych nie ma
-Berkeley Logo to m.in. robotyka, muzyka, GUI, animacje, rÛwnoleg≥o∂Ê,
-multimedia. Dla nich kup komercyjn± wersjÍ.
+%description -l pl.UTF-8
+Interpreter Berkeley Logo dla Unika i X. Mo≈ºliwo≈õci, kt√≥rych nie ma
+Berkeley Logo to m.in. robotyka, muzyka, GUI, animacje, r√≥wnoleg≈Ço≈õƒá,
+multimedia. Dla nich kup komercyjnƒÖ wersjƒô.
 
 %package examples
 Summary:	Example LOGO programs for the Berkeley LOGO interpreter
-Summary(pl):	Przyk≥ady programÛw w LOGO dla interpretera Berkeley LOGO
+Summary(pl.UTF-8):   Przyk≈Çady program√≥w w LOGO dla interpretera Berkeley LOGO
 Group:		Development/Languages
 Requires:	%{name}
 
@@ -35,8 +35,8 @@ Requires:	%{name}
 This package contains example LOGO programs, eg solitaire, poker, plot
 and many others.
 
-%description examples -l pl
-Ten pakiet zawiera przyk≥adowe programy w LOGO, m.in. pasjans, poker,
+%description examples -l pl.UTF-8
+Ten pakiet zawiera przyk≈Çadowe programy w LOGO, m.in. pasjans, poker,
 plot i wiele innych.
 
 %prep
