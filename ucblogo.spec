@@ -1,18 +1,19 @@
 Summary:	Berkeley LOGO interpreter
 Summary(pl.UTF-8):	Interpreter Berkeley LOGO
 Name:		ucblogo
-Version:	5.3
+Version:	6.0
 Release:	1
-License:	GPL
+License:	GPL v2+
 Group:		Development/Languages
 Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
-# Source0-md5:	d10fb7ef5d36c38d54cfe5f2f3f7b5d6
+# Source0-md5:	36a56765b18136c817880c5381af196b
 Patch0:		%{name}-signals.patch
 Patch1:		%{name}-make.patch
-BuildRequires:	XFree86-devel
-BuildRequires:	autoconf
-BuildRequires:	emacs
+Patch2:		%{name}-wx.patch
+URL:		http://www.cs.berkeley.edu/~bh/logo.html
 BuildRequires:	ncurses-devel
+BuildRequires:	wxGTK2-unicode-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,11 +44,22 @@ plot i wiele innych.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+%{__rm} -r csls/CVS
 
 %build
-%{__autoconf}
-%configure --with-x
-%{__make} "CFLAGS=%{rpmcflags}"
+# configure is manually hacked for wx support
+export ac_cv_lib_termcap_tgetstr=no
+export ac_cv_lib_termlib_tgetstr=no
+%configure2_13 \
+	--with-x \
+	--wx-config_path=%{_bindir}/wx-gtk2-unicode-config \
+	--wx-enable
+%{__make} \
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -55,27 +67,27 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/logo
-install csls/* $RPM_BUILD_ROOT%{_examplesdir}/logo
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install csls/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/logo/docs/usermanual.{ps,texi}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
-%{_infodir}/*.info*
-%dir %{_datadir}/logo
-%{_datadir}/logo/*
-%doc README
+%doc README TODO changes.txt newtermnotes plm usermanual
+%attr(755,root,root) %{_bindir}/logo
+%{_infodir}/ucblogo.info*
+%{_datadir}/logo
 
 %files examples
 %defattr(644,root,root,755)
-%dir %{_examplesdir}/logo
-%{_examplesdir}/logo/*
+%{_examplesdir}/%{name}-%{version}
