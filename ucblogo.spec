@@ -10,6 +10,7 @@ Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
 Patch0:		%{name}-signals.patch
 Patch1:		%{name}-make.patch
 Patch2:		%{name}-wx.patch
+Patch3:		%{name}-lp64.patch
 URL:		http://www.cs.berkeley.edu/~bh/logo.html
 BuildRequires:	ncurses-devel
 BuildRequires:	wxGTK2-unicode-devel
@@ -45,6 +46,7 @@ plot i wiele innych.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__rm} -r csls/CVS
 
