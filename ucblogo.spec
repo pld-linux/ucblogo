@@ -2,7 +2,7 @@ Summary:	Berkeley LOGO interpreter
 Summary(pl.UTF-8):	Interpreter Berkeley LOGO
 Name:		ucblogo
 Version:	6.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
