@@ -2,7 +2,7 @@ Summary:	Berkeley LOGO interpreter
 Summary(pl.UTF-8):	Interpreter Berkeley LOGO
 Name:		ucblogo
 Version:	6.0
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
@@ -11,6 +11,7 @@ Patch0:		%{name}-signals.patch
 Patch1:		%{name}-make.patch
 Patch2:		%{name}-wx.patch
 Patch3:		%{name}-lp64.patch
+Patch4:		wxWidgets3.patch
 URL:		http://www.cs.berkeley.edu/~bh/logo.html
 BuildRequires:	ncurses-devel
 BuildRequires:	wxGTK2-unicode-devel
@@ -47,6 +48,7 @@ plot i wiele innych.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %{__rm} -r csls/CVS
 
