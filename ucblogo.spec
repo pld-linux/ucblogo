@@ -1,20 +1,15 @@
 Summary:	Berkeley LOGO interpreter
 Summary(pl.UTF-8):	Interpreter Berkeley LOGO
 Name:		ucblogo
-Version:	6.0
-Release:	3
+Version:	6.2.4
+Release:	1
 License:	GPL v2+
 Group:		Development/Languages
-Source0:	ftp://anarres.cs.berkeley.edu/pub/ucblogo/%{name}-%{version}.tar.gz
-# Source0-md5:	36a56765b18136c817880c5381af196b
-Patch0:		%{name}-signals.patch
-Patch1:		%{name}-make.patch
-Patch2:		%{name}-wx.patch
-Patch3:		%{name}-lp64.patch
-Patch4:		wxWidgets3.patch
+Source0:	https://github.com/jrincayc/ucblogo-code/releases/download/version_%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	d7fb4d409be5349199e0ce377902f233
 URL:		http://www.cs.berkeley.edu/~bh/logo.html
 BuildRequires:	ncurses-devel
-BuildRequires:	wxGTK2-unicode-devel
+BuildRequires:	wxGTK3-unicode-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,26 +39,13 @@ plot i wiele innych.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-
-%{__rm} -r csls/CVS
 
 %build
-# configure is manually hacked for wx support
-export ac_cv_lib_termcap_tgetstr=no
-export ac_cv_lib_termlib_tgetstr=no
-%configure2_13 \
-	--with-x \
-	--wx-config_path=%{_bindir}/wx-gtk2-unicode-config \
-	--wx-enable
-%{__make} \
-	CC="%{__cc}" \
-	CXX="%{__cxx}" \
-	CFLAGS="%{rpmcflags}"
+%configure \
+	--enable-x11 \
+	--with-wx-configh=%{_bindir}/wx-gtk3-unicode-config
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -72,9 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-install csls/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -p csls/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/logo/docs/usermanual.{ps,texi}
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/ucblogo
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -87,10 +69,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README TODO changes.txt newtermnotes plm usermanual
-%attr(755,root,root) %{_bindir}/logo
+%doc README.md TODO changes.txt newtermnotes plm usermanual
+%doc docs/ucblogo.pdf
+%attr(755,root,root) %{_bindir}/ucblogo
 %{_infodir}/ucblogo.info*
-%{_datadir}/logo
+%{_datadir}/ucblogo
+%{_desktopdir}/ucblogo.desktop
+%{_iconsdir}/hicolor/*x*/apps/ucblogo.png
+%{_mandir}/man1/ucblogo.1*
+%{_pixmapsdir}/ucblogo.xpm
 
 %files examples
 %defattr(644,root,root,755)
